@@ -1,7 +1,8 @@
+import json
 import random
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
 
 app = FastAPI()
 
@@ -18,14 +19,20 @@ app.add_middleware(
     allow_headers=["*"],  # Allows all headers
 )
 
-def load_dict(filename):
-    with open(filename, 'r', encoding='utf-8') as f:
-        return [line.strip() for line in f]
-    
-fruits = load_dict('fruits.txt')
-animals = load_dict('animals.txt')
+
+def load_json(filename):
+    with open(filename, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+fruits = load_json("fruits.json")
+animals = load_json("animals.json")
+
 
 @app.get("/nickname")
 def get_nickname():
-    nickname =  random.choice(fruits) + random.choice(animals)
-    return {"nickname": nickname}
+    fruit_key = random.choice(list(fruits.keys()))
+    animal_key = random.choice(list(animals.keys()))
+    nickname = fruit_key + animal_key
+    emoji = fruits[fruit_key] + animals[animal_key]
+    return {"nickname": nickname, "emoji": emoji}
