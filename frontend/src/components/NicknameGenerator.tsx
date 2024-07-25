@@ -27,8 +27,8 @@ function NicknameGenerator() {
       <Card className="flex flex-col items-center p-4">
         {isLoading ? (
           <>
-            <Skeleton className="w-48 h-6 mb-2" />
-            <Skeleton className="w-24 h-6" />
+            <div className="w-full max-w-xs h-8 bg-gray-300 rounded animate-pulse mb-2"></div>{" "}
+            {/* Adjusted for a more gray color and size */}
           </>
         ) : (
           <>
