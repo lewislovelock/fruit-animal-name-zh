@@ -4,7 +4,7 @@
 
 ## Show Case
 
-![DEMO](./public/demo1.jpg)
+![DEMO](./public/demo2.jpg)
 
 ## Installation
 
